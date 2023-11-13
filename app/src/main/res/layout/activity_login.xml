@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <EditText
         android:id="@+id/edit_text_tc"
@@ -15,27 +15,38 @@
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/edit_text_isim"
+        android:id="@+id/edit_text_sifre"
         android:layout_marginTop="16dp"
-        android:hint="İsim"
+        android:hint="Sifre"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_tc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/edit_text_sifre"
-        android:layout_marginTop="16dp"
-        android:hint="Sifre"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_isim"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <Button
-        android:id="@+id/button_kaydet"
+        android:id="@+id/button_login"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_sifre"
+        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kaydet" />
+        android:text="Giris Yap" />
+
+    <TextView
+        android:id="@+id/text_or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/button_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="ya da" />
+
+    <Button
+        android:id="@+id/button_goto_register"
+        app:layout_constraintTop_toBottomOf="@+id/text_or"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kayıt Ol" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
