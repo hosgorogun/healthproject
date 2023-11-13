@@ -26,6 +26,7 @@ class RegisterActivity : AppCompatActivity() {
                 "tc" to binding.editTextTc.text.toString(),
                 "isim" to binding.editTextIsim.text.toString(),
                 "sifre" to binding.editTextSifre.text.toString(),
+                "ogun" to "maloz",
             )
 
             db.collection("kullanicilar")
