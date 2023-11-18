@@ -1,4 +1,4 @@
-package com.inuceng.evdesaglik
+package com.inuceng.evdesaglik.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

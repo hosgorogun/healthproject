@@ -61,6 +61,9 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
+    implementation("io.insert-koin:koin-android:3.5.2-RC1")
+    implementation("io.insert-koin:koin-core:3.5.2-RC1")
+
     implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-firestore")
