@@ -22,7 +22,7 @@ android {
         getByName("debug") {
             keyAlias = "debug"
             keyPassword = "135790"
-            storeFile = file("../keys/debug-key.jks")
+            storeFile = file("../keys/new-debug-key.jks")
             storePassword = "135790"
         }
     }
