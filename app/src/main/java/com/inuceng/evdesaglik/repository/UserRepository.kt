@@ -1,0 +1,47 @@
+package com.inuceng.evdesaglik.repository
+
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.inuceng.evdesaglik.data.User
+
+class UserRepository(val db: FirebaseFirestore = Firebase.firestore) {
+
+    companion object {
+        const val DATABASE_TABLE_USERS = "kullanicilar"
+    }
+
+    fun registerUser(user: User, onSuccess: () -> Unit) {
+
+        val yeniKullanici = hashMapOf(
+            "tc" to user.tc,
+            "isim" to user.name,
+            "sifre" to user.password,
+            )
+
+        db.collection(DATABASE_TABLE_USERS)
+            .add(yeniKullanici)
+            .addOnSuccessListener { documentReference ->
+                onSuccess.invoke()
+            }
+    }
+
+    fun loginUser(tc: String, password: String, onSuccess: (User) -> Unit) {
+        db.collection(DATABASE_TABLE_USERS)
+            .whereEqualTo("tc", tc)
+            .whereEqualTo("sifre", password)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (documents.isEmpty.not()) {
+                    onSuccess.invoke(
+                        User(
+                            name = documents.first().get("isim").toString(),
+                            tc = tc,
+                            password = password
+                        )
+                    )
+                }
+            }
+    }
+
+}

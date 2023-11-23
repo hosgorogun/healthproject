@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "650112765678",
+    "project_id": "evde-saglik-c9547",
+    "storage_bucket": "evde-saglik-c9547.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650112765678:android:376de9d5fd400409e6adff",
+        "android_client_info": {
+          "package_name": "com.inuceng.evdesaglik"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgbFQ1wKFzchzxUq8IhNKM1girR5fnR1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
