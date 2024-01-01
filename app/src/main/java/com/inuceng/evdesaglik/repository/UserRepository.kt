@@ -17,6 +17,8 @@ class UserRepository(val db: FirebaseFirestore = Firebase.firestore) {
             "tc" to user.tc,
             "isim" to user.name,
             "sifre" to user.password,
+            "lastName" to user.lastName,
+            "dateOfBrith" to user.dateOfBirth,
             )
 
         db.collection(DATABASE_TABLE_USERS)
@@ -26,7 +28,7 @@ class UserRepository(val db: FirebaseFirestore = Firebase.firestore) {
             }
     }
 
-    fun loginUser(tc: String, password: String, onSuccess: (User) -> Unit) {
+    fun loginUser(tc: String, password: String , onSuccess: (User) -> Unit) {
         db.collection(DATABASE_TABLE_USERS)
             .whereEqualTo("tc", tc)
             .whereEqualTo("sifre", password)
@@ -37,7 +39,10 @@ class UserRepository(val db: FirebaseFirestore = Firebase.firestore) {
                         User(
                             name = documents.first().get("isim").toString(),
                             tc = tc,
-                            password = password
+                            password = password,
+                            lastName = documents.first().get("lastName").toString(),
+                            dateOfBirth = documents.first().get("dateOfBirth").toString()
+
                         )
                     )
                 }

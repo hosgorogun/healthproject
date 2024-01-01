@@ -20,12 +20,18 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        if (binding.editTextTc.toString().length==11)
+        {
+            
+        }
         binding.buttonKaydet.setOnClickListener {
 
             val user = User(
-                tc = binding.editTextTc.text.toString(),
+                tc = binding.editTextTc.text.toString() ,
                 name = binding.editTextIsim.text.toString(),
                 password = binding.editTextSifre.text.toString(),
+                dateOfBirth = binding.editTextDgmtrh.text.toString(),
+                lastName = binding.editTextSoyisim.text.toString(),
             )
 
             userRepository.registerUser(

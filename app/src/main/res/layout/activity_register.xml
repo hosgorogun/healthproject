@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".ui.LoginActivity">
+    tools:context=".ui.LoginActivity"
+    android:background="#31A9E3"
+    >
 
     <EditText
         android:id="@+id/edit_text_tc"
@@ -16,28 +18,51 @@
         android:layout_height="wrap_content" />
 
     <EditText
+        android:id="@+id/edit_text_soyisim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:hint="Soyisim"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_tc"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
         android:id="@+id/edit_text_isim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="İsim"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_tc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        tools:layout_editor_absoluteX="16dp" />
 
     <EditText
         android:id="@+id/edit_text_sifre"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:hint="Sifre"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_isim"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_soyisim"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/edit_text_dgmtrh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:hint="Dpğum  tarihi"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_soyisim"
+        tools:layout_editor_absoluteX="7dp" />
 
     <Button
         android:id="@+id/button_kaydet"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_sifre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kaydet" />
+        android:layout_marginTop="104dp"
+        android:text="Kaydet"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_sifre"
+        tools:layout_editor_absoluteX="16dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

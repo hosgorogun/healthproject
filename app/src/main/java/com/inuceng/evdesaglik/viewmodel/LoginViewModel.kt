@@ -13,7 +13,7 @@ class LoginViewModel(
     private val _loginResult: MutableStateFlow<User?> = MutableStateFlow(null)
     val loginResult = _loginResult.asStateFlow()
 
-    fun login(tc: String, password: String) {
+    fun login(tc: String, password:String) {
         userRepository.loginUser(
             tc = tc,
             password = password,

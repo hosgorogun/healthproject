@@ -1,9 +1,15 @@
 package com.inuceng.evdesaglik.ui
 
-import androidx.appcompat.app.AppCompatActivity
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.inuceng.evdesaglik.databinding.ActivityDashboardBinding
+
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -16,6 +22,8 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.textWelcome.text = "Hosgeldiniz, ${intent.extras?.getString("name")}"
+        
 
     }
+
 }
