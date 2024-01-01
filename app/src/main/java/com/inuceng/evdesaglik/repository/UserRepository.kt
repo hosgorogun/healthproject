@@ -37,12 +37,11 @@ class UserRepository(val db: FirebaseFirestore = Firebase.firestore) {
                 if (documents.isEmpty.not()) {
                     onSuccess.invoke(
                         User(
-                            name = documents.first().get("isim").toString(),
+                                name = documents.first().get("isim").toString(),
                             tc = tc,
                             password = password,
                             lastName = documents.first().get("lastName").toString(),
                             dateOfBirth = documents.first().get("dateOfBirth").toString()
-
                         )
                     )
                 }

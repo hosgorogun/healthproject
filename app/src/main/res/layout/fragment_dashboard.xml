@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#31A9E3"
-    android:onClick="psikolog"
     android:orientation="vertical"
-    tools:context=".ui.DashboardActivity">
+    tools:context=".ui.dashboard.HostActivity">
 
     <Button
         android:id="@+id/button_hastane"
@@ -15,7 +14,6 @@
         android:layout_height="0dp"
         android:layout_marginTop="131dp"
         android:layout_marginBottom="32dp"
-        android:onClick="hastane"
         android:text="Hastane Evimde"
         app:layout_constraintBottom_toTopOf="@+id/button_eczane"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +25,6 @@
         android:layout_width="188dp"
         android:layout_height="0dp"
         android:layout_marginBottom="40dp"
-        android:onClick="eczane"
         android:text="Eczane Evimde"
         app:layout_constraintBottom_toTopOf="@+id/button_fizyoterapist"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +36,6 @@
         android:layout_width="188dp"
         android:layout_height="0dp"
         android:layout_marginBottom="36dp"
-        android:onClick="fizyo"
         android:text="Fizyoterapist Evimde"
         app:layout_constraintBottom_toTopOf="@+id/button_psikolog"
         app:layout_constraintEnd_toEndOf="parent"

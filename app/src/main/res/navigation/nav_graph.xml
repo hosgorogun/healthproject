@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.inuceng.evdesaglik.ui.dashboard.fragments.DashboardFragment"
+        android:label="fragment_dasboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_hospitalFragment"
+            app:destination="@id/hospitalFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_pharmacyFragment"
+            app:destination="@id/pharmacyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/hospitalFragment"
+        android:name="com.inuceng.evdesaglik.ui.dashboard.fragments.HospitalFragment"
+        android:label="fragment_hospital"
+        tools:layout="@layout/fragment_hospital" />
+    <fragment
+        android:id="@+id/pharmacyFragment"
+        android:name="com.inuceng.evdesaglik.ui.dashboard.fragments.PharmacyFragment"
+        android:label="fragment_pharmacy"
+        tools:layout="@layout/fragment_pharmacy" />
+</navigation>

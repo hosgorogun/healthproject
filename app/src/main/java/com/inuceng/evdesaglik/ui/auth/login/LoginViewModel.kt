@@ -1,4 +1,4 @@
-package com.inuceng.evdesaglik.viewmodel
+package com.inuceng.evdesaglik.ui.auth.login
 
 import androidx.lifecycle.ViewModel
 import com.inuceng.evdesaglik.data.User
@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class LoginViewModel(
-    private val userRepository: UserRepository
-): ViewModel() {
+    private val userRepository: UserRepository,
 
+): ViewModel() {
     private val _loginResult: MutableStateFlow<User?> = MutableStateFlow(null)
     val loginResult = _loginResult.asStateFlow()
 
@@ -17,12 +17,8 @@ class LoginViewModel(
         userRepository.loginUser(
             tc = tc,
             password = password,
-            onSuccess = ::handleSuccessLogin)
+            onSuccess = { user ->
+                _loginResult.value = user
+            })
     }
-
-    private fun handleSuccessLogin(user: User) {
-        _loginResult.value = user
-    }
-
-
 }

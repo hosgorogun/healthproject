@@ -1,4 +1,4 @@
-package com.inuceng.evdesaglik.ui
+package com.inuceng.evdesaglik.ui.auth.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.inuceng.evdesaglik.databinding.ActivityLoginBinding
-import com.inuceng.evdesaglik.viewmodel.LoginViewModel
+import com.inuceng.evdesaglik.ui.auth.register.RegisterActivity
+import com.inuceng.evdesaglik.ui.dashboard.HostActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -40,8 +41,8 @@ class LoginActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loginResult.collectLatest { user ->
-                    if(user != null) {
-                        val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
+                    if (user != null) {
+                        val intent = Intent(this@LoginActivity, HostActivity::class.java)
                         intent.putExtra("name", user.name)
                         startActivity(intent)
                         finish()

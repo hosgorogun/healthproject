@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".ui.LoginActivity"
+    tools:context=".ui.auth.login.LoginActivity"
     android:background="#31A9E3">
     <ImageView
         android:layout_width="190dp"
@@ -19,6 +19,7 @@
         android:id="@+id/edit_text_tc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="135246"
         android:layout_marginTop="192dp"
         android:hint="TC No"
         android:inputType="number"
@@ -30,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:text="135246"
         android:hint="Sifre"
         android:inputType="textPassword"
         android:textColorHint="@color/white"
