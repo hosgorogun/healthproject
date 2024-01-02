@@ -2,4 +2,11 @@
     <string name="app_name">Evimde Saglik</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+        <string-array name="choices">
+            <item>Dr.Ali Osman</item>
+            <item>Dr.Salih Karakaşlı</item>
+            <item>Dr.Ogün Hoşgör</item>
+            <!-- Dilediğiniz kadar seçenek ekleyebilirsiniz -->
+        </string-array>
+    MainActivity.kt:
 </resources>
