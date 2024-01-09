@@ -16,6 +16,12 @@
         <action
             android:id="@+id/action_dashboardFragment_to_pharmacyFragment"
             app:destination="@id/pharmacyFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_physiotherapyFragment"
+            app:destination="@id/physiotherapyFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_psychologyFragment"
+            app:destination="@id/psychologyFragment" />
     </fragment>
 
     <fragment
@@ -28,4 +34,14 @@
         android:name="com.inuceng.evdesaglik.ui.dashboard.fragments.PharmacyFragment"
         android:label="fragment_pharmacy"
         tools:layout="@layout/fragment_pharmacy" />
+    <fragment
+        android:id="@+id/physiotherapyFragment"
+        android:name="com.inuceng.evdesaglik.ui.dashboard.fragments.PhysiotherapyFragment"
+        android:label="fragment_physiotherapy"
+        tools:layout="@layout/fragment_physiotherapy" />
+    <fragment
+        android:id="@+id/psychologyFragment"
+        android:name="com.inuceng.evdesaglik.ui.dashboard.fragments.PsychologyFragment"
+        android:label="fragment_psychology"
+        tools:layout="@layout/fragment_psychology" />
 </navigation>

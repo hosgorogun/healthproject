@@ -30,6 +30,12 @@ class DashboardFragment : Fragment() {
         binding?.buttonEczane?.setOnClickListener {
             this@DashboardFragment.findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToPharmacyFragment())
         }
+        binding?.buttonFizyoterapist?.setOnClickListener {
+            this@DashboardFragment.findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToPhysiotherapyFragment())
+        }
+        binding?.buttonPsikolog?.setOnClickListener {
+            this@DashboardFragment.findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToPsychologyFragment())
+        }
 
         return binding?.root
     }

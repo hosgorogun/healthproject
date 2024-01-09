@@ -15,25 +15,29 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="16dp"
         tools:ignore="MissingConstraints"></ImageView>
+
     <EditText
         android:id="@+id/edit_text_tc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="135246"
         android:layout_marginTop="192dp"
         android:hint="TC No"
         android:inputType="number"
+        android:minHeight="48dp"
+        android:text="135246"
         android:textColorHint="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
+
     <EditText
         android:id="@+id/edit_text_sifre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="135246"
         android:hint="Sifre"
         android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:text="135246"
         android:textColorHint="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_tc"
         tools:layout_editor_absoluteX="16dp" />

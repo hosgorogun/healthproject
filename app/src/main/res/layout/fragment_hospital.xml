@@ -4,56 +4,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#31A9E3"
     tools:context=".ui.dashboard.fragments.HospitalFragment">
-
 
     <Button
         android:id="@+id/datePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="3dp"
         android:text="SEÇ"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.351"
         app:layout_constraintStart_toEndOf="@+id/editText"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="38dp"></Button>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"></Button>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:text="Tarih Seç"
         android:textSize="25dp"
+
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText"
+        app:layout_constraintEnd_toStartOf="@+id/editText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        tools:ignore="MissingConstraints"></TextView>
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="207dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="11dp"
         android:hint="6.01.2024"
         android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-    </EditText>
+        app:layout_constraintEnd_toStartOf="@+id/datePicker"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/datePicker"
+        tools:ignore="MissingConstraints"></EditText>
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="444dp"
         android:entries="@array/choices"
         android:minHeight="48dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="246dp"
+        android:layout_marginBottom="153dp"
+        android:text="Doktor Seç"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"></TextView>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="175dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="104dp"
+        android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.419"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,4 @@
 package com.inuceng.evdesaglik.ui.dashboard.fragments
-
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,15 +14,11 @@ import com.inuceng.evdesaglik.databinding.FragmentHospitalBinding
 import org.koin.android.ext.android.inject
 import java.util.Calendar
 
-class HospitalFragment : Fragment()
-{
+class HospitalFragment : Fragment() {
     var selectedDate = "a"
-
-
     companion object {
         fun newInstance() = HospitalFragment()
     }
-
     private val viewModel: HospitalViewModel by inject()
     private var binding: FragmentHospitalBinding? = null
 
@@ -35,20 +30,13 @@ class HospitalFragment : Fragment()
 
         return binding?.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-       var datePicker = binding!!.datePicker
-
+        var datePicker = binding!!.datePicker
         datePicker.setOnClickListener {
             showDatePickerDialog()
         }
-
-
         val spinner: Spinner = binding!!.spinner
-
         // ArrayAdapter ile Spinner'a veri bağlama
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -58,58 +46,48 @@ class HospitalFragment : Fragment()
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner.adapter = adapter
         }
-
         // Spinner üzerinde bir seçim yapıldığında gerçekleşecek olayları dinleme
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: android.view.View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: android.view.View?,
+                position: Int,
+                id: Long
+            ) {
                 // Seçilen öğe ile ilgili yapılacak işlemler
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 showToast("Seçilen öğe: $selectedItem")
             }
-
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Hiçbir şey seçilmediğinde yapılacak işlemler
             }
         }
-
     }
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
     }
-
     private fun showDatePickerDialog() {
         val calendar = Calendar.getInstance()
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val month = calendar.get(Calendar.MONTH)
         val year = calendar.get(Calendar.YEAR)
-
-
-
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, year, monthOfYear, dayOfMonth ->
                 // Kullanıcı bir tarih seçtiğinde yapılacak işlemler
-               selectedDate = "$dayOfMonth-${monthOfYear + 1}-$year"
+                selectedDate = "$dayOfMonth-${monthOfYear + 1}-$year"
                 // Burada seçilen tarih ile istediğiniz işlemleri yapabilirsiniz
-                binding!!.editText.setText(selectedDate)
-            },
-            day,
-            month,
-            year
+                binding!!.editText.setText(selectedDate) }, day, month, year
         )
-
         // Dialog'un kapatılabilmesi için CancelListener ekleniyor
         datePickerDialog.setOnCancelListener {
             // Kullanıcı iptal ettiğinde yapılacak işlemler
         }
-
         datePickerDialog.show()
     }
-
     private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()}
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
 
 }
