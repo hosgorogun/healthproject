@@ -4,90 +4,104 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.inuceng.evdesaglik.R
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.inuceng.evdesaglik.data.Appointment
 import com.inuceng.evdesaglik.databinding.FragmentHospitalBinding
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.android.ext.android.inject
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 class HospitalFragment : Fragment() {
-    var selectedDate = "a"
-    companion object {
-        fun newInstance() = HospitalFragment()
-    }
+
+    private lateinit var binding: FragmentHospitalBinding
+    private val doctors = listOf("Doktor 1", "Doktor 2", "Doktor 3") // Örnek doktor listesi
+    private val calendar = Calendar.getInstance()
+
     private val viewModel: HospitalViewModel by inject()
-    private var binding: FragmentHospitalBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHospitalBinding.inflate(inflater)
-
-        return binding?.root
+        return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var datePicker = binding!!.datePicker
-        datePicker.setOnClickListener {
-            showDatePickerDialog()
+        setupDatePicker()
+        setupDoctorSpinner()
+        setupTimeSlots()
+
+        binding.createAppointmentButton.setOnClickListener {
+            createAppointment()
         }
-        val spinner: Spinner = binding!!.spinner
-        // ArrayAdapter ile Spinner'a veri bağlama
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.choices,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
-        }
-        // Spinner üzerinde bir seçim yapıldığında gerçekleşecek olayları dinleme
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: android.view.View?,
-                position: Int,
-                id: Long
-            ) {
-                // Seçilen öğe ile ilgili yapılacak işlemler
-                val selectedItem = parent.getItemAtPosition(position).toString()
-                showToast("Seçilen öğe: $selectedItem")
-            }
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // Hiçbir şey seçilmediğinde yapılacak işlemler
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.createResult.collectLatest { result ->
+                if(result) {
+                    findNavController().navigate(HospitalFragmentDirections.actionHospitalFragmentToDashboardFragment())
+                }
             }
         }
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
-    }
-    private fun showDatePickerDialog() {
-        val calendar = Calendar.getInstance()
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-        val month = calendar.get(Calendar.MONTH)
-        val year = calendar.get(Calendar.YEAR)
-        val datePickerDialog = DatePickerDialog(
-            requireContext(),
-            { _, year, monthOfYear, dayOfMonth ->
-                // Kullanıcı bir tarih seçtiğinde yapılacak işlemler
-                selectedDate = "$dayOfMonth-${monthOfYear + 1}-$year"
-                // Burada seçilen tarih ile istediğiniz işlemleri yapabilirsiniz
-                binding!!.editText.setText(selectedDate) }, day, month, year
-        )
-        // Dialog'un kapatılabilmesi için CancelListener ekleniyor
-        datePickerDialog.setOnCancelListener {
-            // Kullanıcı iptal ettiğinde yapılacak işlemler
-        }
-        datePickerDialog.show()
-    }
-    private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
+    private fun setupDatePicker() {
+        updateDateInView()
+
+        binding.datePickerButton.setOnClickListener {
+            DatePickerDialog(
+                requireContext(),
+                { _, year, month, dayOfMonth ->
+                    calendar.set(year, month, dayOfMonth)
+                    updateDateInView()
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+    }
+
+    private fun updateDateInView() {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val selectedDate = dateFormat.format(calendar.time)
+        binding.selectedDateText.text = selectedDate
+    }
+
+    private fun setupDoctorSpinner() {
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, doctors)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.doctorSpinner.adapter = adapter
+    }
+
+    private fun setupTimeSlots() {
+        val timeSlots = (9..15).map { "$it:00" } // 9:00'dan 15:00'a saat aralıkları
+        val timeSlotAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, timeSlots)
+        timeSlotAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.timeSlotSpinner.adapter = timeSlotAdapter
+    }
+
+    private fun createAppointment() {
+        val selectedDate = binding.selectedDateText.text.toString()
+        val selectedDoctor = binding.doctorSpinner.selectedItem.toString()
+        val selectedTimeSlot = binding.timeSlotSpinner.selectedItem.toString()
+
+        viewModel.createAppointment(
+            Appointment(
+                doctor = selectedDoctor,
+                date = selectedDate,
+                time = selectedTimeSlot,
+                user = ""
+            )
+        )
+
+    }
 }
+

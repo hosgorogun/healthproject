@@ -1,5 +1,6 @@
 package com.inuceng.evdesaglik.di
 
+import com.inuceng.evdesaglik.repository.AppointmentRepository
 import com.inuceng.evdesaglik.repository.UserRepository
 import com.inuceng.evdesaglik.ui.auth.login.LoginViewModel
 import com.inuceng.evdesaglik.ui.auth.register.RegisterViewModel
@@ -12,6 +13,10 @@ val loginModule = module {
 
     single {
         UserRepository()
+    }
+
+    single {
+        AppointmentRepository()
     }
 
     viewModel {
@@ -28,7 +33,8 @@ val loginModule = module {
 
     viewModel {
         HospitalViewModel(
-
+            userRepository = get(),
+            appointmentRepository = get(),
         )
 
     }

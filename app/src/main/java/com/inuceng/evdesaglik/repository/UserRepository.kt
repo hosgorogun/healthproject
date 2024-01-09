@@ -11,6 +11,8 @@ class UserRepository(val db: FirebaseFirestore = Firebase.firestore) {
         const val DATABASE_TABLE_USERS = "kullanicilar"
     }
 
+    lateinit var currentUser: User
+
     fun registerUser(user: User, onSuccess: () -> Unit) {
 
         val yeniKullanici = hashMapOf(
@@ -19,7 +21,7 @@ class UserRepository(val db: FirebaseFirestore = Firebase.firestore) {
             "sifre" to user.password,
             "lastName" to user.lastName,
             "dateOfBrith" to user.dateOfBirth,
-            )
+        )
 
         db.collection(DATABASE_TABLE_USERS)
             .add(yeniKullanici)
@@ -35,14 +37,16 @@ class UserRepository(val db: FirebaseFirestore = Firebase.firestore) {
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.isEmpty.not()) {
+                    val user = User(
+                        name = documents.first().get("isim").toString(),
+                        tc = tc,
+                        password = password,
+                        lastName = documents.first().get("lastName").toString(),
+                        dateOfBirth = documents.first().get("dateOfBirth").toString()
+                    )
+                    currentUser = user
                     onSuccess.invoke(
-                        User(
-                                name = documents.first().get("isim").toString(),
-                            tc = tc,
-                            password = password,
-                            lastName = documents.first().get("lastName").toString(),
-                            dateOfBirth = documents.first().get("dateOfBirth").toString()
-                        )
+                        user
                     )
                 }
             }

@@ -28,7 +28,11 @@
         android:id="@+id/hospitalFragment"
         android:name="com.inuceng.evdesaglik.ui.dashboard.fragments.HospitalFragment"
         android:label="fragment_hospital"
-        tools:layout="@layout/fragment_hospital" />
+        tools:layout="@layout/fragment_hospital" >
+        <action
+            android:id="@+id/action_hospitalFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
     <fragment
         android:id="@+id/pharmacyFragment"
         android:name="com.inuceng.evdesaglik.ui.dashboard.fragments.PharmacyFragment"

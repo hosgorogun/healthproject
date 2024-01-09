@@ -9,5 +9,6 @@
         <!-- Dilediğiniz kadar seçenek ekleyebilirsiniz -->
     </string-array>
     <string name="title_activity_maps">MapsActivity</string>
-    MainActivity.kt:
+    <string name="select_doctor">Doktor Sec</string>
+    <string name="select_time">Saat Sec</string>
 </resources>
