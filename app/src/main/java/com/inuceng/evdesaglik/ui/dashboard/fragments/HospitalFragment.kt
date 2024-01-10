@@ -19,7 +19,7 @@ import java.util.Locale
 class HospitalFragment : Fragment() {
 
     private lateinit var binding: FragmentHospitalBinding
-    private val doctors = listOf("Doktor 1", "Doktor 2", "Doktor 3") // Örnek doktor listesi
+    private val doctors = listOf("Dr.Ogün Hoşgör", "Dr.ULaş Can Yazıcı", "Dr.Umut Çalışkan") // Örnek doktor listesi
     private val calendar = Calendar.getInstance()
 
     private val viewModel: HospitalViewModel by inject()
