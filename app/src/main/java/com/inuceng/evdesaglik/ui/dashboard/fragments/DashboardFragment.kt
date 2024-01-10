@@ -4,10 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.inuceng.evdesaglik.data.Appointment
 import com.inuceng.evdesaglik.databinding.FragmentDashboardBinding
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.android.ext.android.inject
 
 class DashboardFragment : Fragment() {
@@ -44,13 +46,26 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = binding!!.recyclerview
-        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        viewModel.loadAppointmentsForUser()
 
-        val adapter =
-            ItemListAdapter(MockList.getMockedItemList() as ArrayList<Appointment>)
+        lifecycleScope.launchWhenStarted {
+            viewModel.appointments.collectLatest { result ->
+                if(result.isNotEmpty()) {
+                    setAdapter(result)
+                    binding!!.noRandevu.visibility = View.GONE
+                    binding!!.recyclerview.visibility = View.VISIBLE
+                } else {
+                    binding!!.noRandevu.visibility = View.VISIBLE
+                    binding!!.recyclerview.visibility = View.GONE
+                }
+            }
+        }
+    }
 
-        recyclerView.adapter= adapter
+    private fun setAdapter(data: List<Appointment>) {
+        binding!!.recyclerview.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        val adapter = ItemListAdapter(data)
+        binding!!.recyclerview.adapter= adapter
         adapter.notifyDataSetChanged()
     }
 

@@ -7,6 +7,39 @@
     android:background="#FAFAFA"
     tools:context=".ui.dashboard.HostActivity">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/locationContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="16dp"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_location" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:text="Konumunuz: Istanbul" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/text_header"
         android:layout_width="wrap_content"
@@ -14,22 +47,20 @@
         android:layout_marginTop="16dp"
         android:text="Yapmak istediğiniz işlemi seçiniz"
         android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@id/menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/locationContainer" />
 
     <GridLayout
         android:id="@+id/menu"
+        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="2"
         android:rowCount="2"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_header">
-
 
         <LinearLayout
             android:id="@+id/button_hastane"
@@ -169,11 +200,33 @@
 
     </GridLayout>
 
+    <TextView
+        android:id="@+id/randevularBaslik"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Randevulariniz"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/menu" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
-        android:layout_width="407dp"
-        android:layout_height="103dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="620dp" />
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/randevularBaslik" />
+
+    <TextView
+        android:id="@+id/no_randevu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Henuz hic randevunuz yoktur"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/randevularBaslik" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

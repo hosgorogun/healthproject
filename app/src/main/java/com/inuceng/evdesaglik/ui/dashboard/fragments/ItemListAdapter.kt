@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.inuceng.evdesaglik.R
 import com.inuceng.evdesaglik.data.Appointment
 
-class ItemListAdapter(val itemList: ArrayList<Appointment>) :
+class ItemListAdapter(val itemList: List<Appointment>) :
     RecyclerView.Adapter<ItemListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemListViewHolder {
         return ItemListViewHolder(

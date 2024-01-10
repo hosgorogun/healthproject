@@ -4,6 +4,7 @@ import com.inuceng.evdesaglik.repository.AppointmentRepository
 import com.inuceng.evdesaglik.repository.UserRepository
 import com.inuceng.evdesaglik.ui.auth.login.LoginViewModel
 import com.inuceng.evdesaglik.ui.auth.register.RegisterViewModel
+import com.inuceng.evdesaglik.ui.dashboard.fragments.DashboardViewModel
 import com.inuceng.evdesaglik.ui.dashboard.fragments.HospitalViewModel
 import com.inuceng.evdesaglik.ui.dashboard.fragments.PharmacyViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -41,6 +42,13 @@ val loginModule = module {
     viewModel{
         PharmacyViewModel(
 
+        )
+    }
+
+    viewModel {
+        DashboardViewModel(
+            appointmentRepository = get(),
+            userRepository = get(),
         )
     }
 }
