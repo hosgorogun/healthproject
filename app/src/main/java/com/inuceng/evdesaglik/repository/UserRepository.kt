@@ -1,35 +1,23 @@
 package com.inuceng.evdesaglik.repository
-
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.inuceng.evdesaglik.data.User
-
 class UserRepository(val db: FirebaseFirestore = Firebase.firestore) {
-
     companion object {
-        const val DATABASE_TABLE_USERS = "kullanicilar"
-    }
-
+        const val DATABASE_TABLE_USERS = "kullanicilar" }
     lateinit var currentUser: User
-
     fun registerUser(user: User, onSuccess: () -> Unit) {
-
         val yeniKullanici = hashMapOf(
             "tc" to user.tc,
             "isim" to user.name,
             "sifre" to user.password,
             "lastName" to user.lastName,
-            "dateOfBrith" to user.dateOfBirth,
-        )
-
+            "dateOfBrith" to user.dateOfBirth,)
         db.collection(DATABASE_TABLE_USERS)
             .add(yeniKullanici)
             .addOnSuccessListener { documentReference ->
-                onSuccess.invoke()
-            }
-    }
-
+                onSuccess.invoke() } }
     fun loginUser(tc: String, password: String , onSuccess: (User) -> Unit) {
         db.collection(DATABASE_TABLE_USERS)
             .whereEqualTo("tc", tc)
@@ -42,8 +30,7 @@ class UserRepository(val db: FirebaseFirestore = Firebase.firestore) {
                         tc = tc,
                         password = password,
                         lastName = documents.first().get("lastName").toString(),
-                        dateOfBirth = documents.first().get("dateOfBirth").toString()
-                    )
+                        dateOfBirth = documents.first().get("dateOfBirth").toString())
                     currentUser = user
                     onSuccess.invoke(
                         user
@@ -51,5 +38,4 @@ class UserRepository(val db: FirebaseFirestore = Firebase.firestore) {
                 }
             }
     }
-
 }

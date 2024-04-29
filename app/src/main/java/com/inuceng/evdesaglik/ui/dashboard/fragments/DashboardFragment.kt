@@ -11,16 +11,12 @@ import com.inuceng.evdesaglik.data.Appointment
 import com.inuceng.evdesaglik.databinding.FragmentDashboardBinding
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.android.ext.android.inject
-
 class DashboardFragment : Fragment() {
-
     companion object {
         fun newInstance() = DashboardFragment()
     }
-
     private val viewModel: DashboardViewModel by inject()
     private var binding: FragmentDashboardBinding? = null
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,12 +38,10 @@ class DashboardFragment : Fragment() {
 
         return binding?.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.loadAppointmentsForUser()
-
         lifecycleScope.launchWhenStarted {
             viewModel.appointments.collectLatest { result ->
                 if(result.isNotEmpty()) {
@@ -61,13 +55,11 @@ class DashboardFragment : Fragment() {
             }
         }
     }
-
     private fun setAdapter(data: List<Appointment>) {
         binding!!.recyclerview.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         val adapter = ItemListAdapter(data)
         binding!!.recyclerview.adapter= adapter
         adapter.notifyDataSetChanged()
     }
-
 
 }

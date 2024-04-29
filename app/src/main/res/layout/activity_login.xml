@@ -47,7 +47,6 @@
                 android:layout_height="50dp"
                 android:hint="TC No"
                 android:inputType="number"
-                android:text="135246"
                 android:textColorHint="#DEDEDE" />
 
             <TextView
@@ -68,7 +67,6 @@
                 android:hint="Sifre"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                android:text="135246"
                 android:textColorHint="#DEDEDE"
                 app:layout_constraintTop_toBottomOf="@+id/edit_text_tc" />
 

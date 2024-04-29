@@ -1,14 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#31A9E3"
-    tools:context=".ui.dashboard.fragments.PhysiotherapyFragment">
+    android:orientation="vertical"
+    android:background="#FAFAFA"
+    android:padding="16dp">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-</FrameLayout>
+        <!-- Başlık -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Doktor Talebi Oluştur"
+            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"
+            android:textStyle="bold"/>
+
+        <!-- Tarih Seçimi -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tarih Seçimi"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/spinner_border"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/selectedDateText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="Seçilen Tarih"
+                android:gravity="center_vertical"/>
+
+            <Button
+                android:id="@+id/datePickerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Tarih Seç"/>
+
+        </LinearLayout>
+
+        <!-- Doktor Seçimi -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Doktor Seçimi"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/doctorSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/spinner_border"
+            android:prompt="@string/select_doctor" />
+
+        <!-- Saat Seçimi -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Saat Seçimi"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/timeSlotSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/spinner_border"
+            android:prompt="@string/select_time" />
+
+        <!-- Talep Oluştur Butonu -->
+        <Button
+            android:id="@+id/createAppointmentButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Talep Oluştur"
+            android:layout_marginTop="24dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

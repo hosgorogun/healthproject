@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
-        android:hint="Soyisim"
+        android:hint="Soyad"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_tc"
         tools:layout_editor_absoluteX="16dp" />
 
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="İsim"
+        android:hint="Ad"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_tc"
         tools:layout_editor_absoluteX="16dp" />
 
@@ -50,8 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
-        android:hint="Dpğum  tarihi"
-        android:inputType="textPassword"
+        android:hint="Doğum Tarihi"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_soyisim"
         tools:layout_editor_absoluteX="7dp" />
 
