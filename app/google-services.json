@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "650112765678",
-    "project_id": "evde-saglik-c9547",
-    "storage_bucket": "evde-saglik-c9547.appspot.com"
+    "project_number": "474785038237",
+    "project_id": "evde-saglik-c9547-c2421",
+    "storage_bucket": "evde-saglik-c9547-c2421.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:650112765678:android:376de9d5fd400409e6adff",
+        "mobilesdk_app_id": "1:474785038237:android:b1d16422ace2e9f6aef974",
         "android_client_info": {
           "package_name": "com.inuceng.evdesaglik"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDgbFQ1wKFzchzxUq8IhNKM1girR5fnR1k"
+          "current_key": "AIzaSyAyg4fyOhqv7ktD8c9npTUnK4ZhH5ZvNoE"
         }
       ],
       "services": {

@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
 import com.inuceng.evdesaglik.data.Appointment
 import com.inuceng.evdesaglik.databinding.FragmentHospitalBinding
 import kotlinx.coroutines.flow.collectLatest
@@ -35,13 +38,14 @@ class HospitalFragment : Fragment() {
         setupTimeSlots()
         binding.createAppointmentButton.setOnClickListener {
             createAppointment()
-            var toast = Toast.makeText(requireContext(),"tebrikler randevunuz oluşturuldu",Toast.LENGTH_LONG).show()
-
+            Toast.makeText(requireContext(),"tebrikler randevunuz oluşturuldu",Toast.LENGTH_LONG).show()
         }
-        lifecycleScope.launchWhenStarted {
-            viewModel.createResult.collectLatest { result ->
-                if(result) {
-                    findNavController().navigate(HospitalFragmentDirections.actionHospitalFragmentToDashboardFragment())
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.createResult.collectLatest { result ->
+                    if(result) {
+                        findNavController().navigate(HospitalFragmentDirections.actionHospitalFragmentToDashboardFragment())
+                    }
                 }
             }
         }

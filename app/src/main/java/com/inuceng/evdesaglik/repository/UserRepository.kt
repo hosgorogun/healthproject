@@ -13,11 +13,13 @@ class UserRepository(val db: FirebaseFirestore = Firebase.firestore) {
             "isim" to user.name,
             "sifre" to user.password,
             "lastName" to user.lastName,
-            "dateOfBrith" to user.dateOfBirth,)
+            "dateOfBirth" to user.dateOfBirth,)
         db.collection(DATABASE_TABLE_USERS)
             .add(yeniKullanici)
-            .addOnSuccessListener { documentReference ->
-                onSuccess.invoke() } }
+            .addOnSuccessListener {
+                onSuccess.invoke()
+            }
+    }
     fun loginUser(tc: String, password: String , onSuccess: (User) -> Unit) {
         db.collection(DATABASE_TABLE_USERS)
             .whereEqualTo("tc", tc)

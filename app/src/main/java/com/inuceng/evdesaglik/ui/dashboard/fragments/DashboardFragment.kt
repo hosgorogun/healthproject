@@ -4,12 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.inuceng.evdesaglik.data.Appointment
 import com.inuceng.evdesaglik.databinding.FragmentDashboardBinding
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 class DashboardFragment : Fragment() {
     companion object {
@@ -42,15 +45,17 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.loadAppointmentsForUser()
-        lifecycleScope.launchWhenStarted {
-            viewModel.appointments.collectLatest { result ->
-                if(result.isNotEmpty()) {
-                    setAdapter(result)
-                    binding!!.noRandevu.visibility = View.GONE
-                    binding!!.recyclerview.visibility = View.VISIBLE
-                } else {
-                    binding!!.noRandevu.visibility = View.VISIBLE
-                    binding!!.recyclerview.visibility = View.GONE
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.appointments.collectLatest { result ->
+                    if(result.isNotEmpty()) {
+                        setAdapter(result)
+                        binding!!.noRandevu.visibility = View.GONE
+                        binding!!.recyclerview.visibility = View.VISIBLE
+                    } else {
+                        binding!!.noRandevu.visibility = View.VISIBLE
+                        binding!!.recyclerview.visibility = View.GONE
+                    }
                 }
             }
         }

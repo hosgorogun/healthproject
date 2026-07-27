@@ -16,9 +16,9 @@ class HospitalViewModel(
     val createResult = _createResult.asStateFlow()
 
     fun createAppointment(appointment: Appointment) {
-        val appointment = appointment.copy(user = userRepository.currentUser.tc)
+        val finalAppointment = appointment.copy(user = userRepository.currentUser.tc)
         appointmentRepository.createAppointment(
-            appointment = appointment,
+            appointment = finalAppointment,
             onSuccess = {
                 _createResult.value = true
             }

@@ -16,7 +16,7 @@ class AppointmentRepository(val db: FirebaseFirestore = Firebase.firestore) {
         )
         db.collection(DATABASE_TABLE_APPOINTMENT)
             .add(newAppointment)
-            .addOnSuccessListener { documentReference ->
+            .addOnSuccessListener {
                 onSuccess.invoke()
             }
     }
